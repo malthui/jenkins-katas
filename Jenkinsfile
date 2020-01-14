@@ -34,6 +34,23 @@ pipeline {
           }
         }
 
+        stage('testapp-app') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
+            }
+
+          }
+          options {
+            skipDefaultCheckout(true)
+          }
+          steps {
+            sh 'ci/build-app.sh'
+            archiveArtifacts 'app/build/libs/'
+            deleteDir()
+          }
+        }
+
       }
     }
 
