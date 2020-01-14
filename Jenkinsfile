@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+    stage('clone down') {
+      steps {
+        sh 'echo "Hello World"'
+        stash(name: 'code', excludes: '.git')
+      }
+    }
+
     stage('say hello') {
       parallel {
         stage('say hello') {
