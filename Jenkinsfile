@@ -48,6 +48,7 @@ pipeline {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             deleteDir()
+            junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
 
