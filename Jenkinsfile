@@ -23,7 +23,11 @@ pipeline {
             }
 
           }
+          options {
+            skipDefaultCheckout(true)
+          }
           steps {
+            unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             deleteDir()
